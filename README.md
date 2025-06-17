@@ -2,6 +2,8 @@
 
 ---
 
+## Visite a página do projeto: https://recomendacao-d23k2ucfmjz3anxevvwnak.streamlit.app/
+
 ## 📌 Descrição do Projeto
 
 Este projeto implementa um sistema de recomendação baseado no comportamento de compra dos clientes, utilizando **similaridade do cosseno** entre produtos. O objetivo é sugerir itens que costumam ser comprados juntos, com base em padrões históricos de compra.
