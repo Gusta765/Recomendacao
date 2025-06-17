@@ -1,88 +1,146 @@
-🛍️ Sistema de Recomendação de Produtos com Similaridade Cosseno
-Este projeto é uma aplicação web interativa para recomendação de produtos baseada em similaridade cosseno, utilizando técnicas de filtragem colaborativa. Desenvolvido com Python, Streamlit e scikit-learn, o sistema simula um cenário realista de compras e permite ao usuário explorar recomendações personalizadas de forma visual e intuitiva.
+<h1 align="center">🔗 Sistema de Recomendação com Similaridade Cosseno</h1>
 
-🔗 Acesse a aplicação:
-https://recomendacao-d23k2ucfmjz3anxevvwnak.streamlit.app/
+<p align="center">
+  <a href="https://www.linkedin.com/in/gustavo-barbosa-868976236/">
+    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn">
+  </a>
+  <a href="mailto:gustavobarbosa7744@gmail.com">
+    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email">
+  </a>
+  <a href="https://github.com/seu-usuario">
+    <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
+  </a>
+</p>
 
-🚀 Funcionalidades
-Interface moderna e responsiva com Streamlit e CSS customizado
+---
 
-Geração de dados fictícios simulando compras reais
+## 📌 Descrição do Projeto
 
-Cálculo de similaridade cosseno entre produtos (matriz item-item)
+Este projeto implementa um sistema de recomendação baseado no comportamento de compra dos clientes, utilizando **similaridade do cosseno** entre produtos. O objetivo é sugerir itens que costumam ser comprados juntos, com base em padrões históricos de compra.
 
-Recomendação de produtos similares com base em um item selecionado
+A aplicação foi desenvolvida em **Python** com **Streamlit**, e utiliza conceitos de **álgebra linear** para calcular a similaridade entre vetores de produtos.
 
-Visualização interativa com Plotly:
+---
 
-Gráficos de vendas
+## 🧠 Fundamento Matemático
 
-Produtos mais populares
+O coração do projeto está na **similaridade cosseno**, uma métrica vetorial que mede o ângulo entre dois vetores em um espaço n-dimensional.
 
-Evolução de compras por mês
+### 🔸 Vetorização dos Produtos
 
-Heatmap da matriz de similaridade
+Cada produto é representado como um vetor, onde:
 
-🧠 Tecnologias Utilizadas
-Ferramenta	Finalidade
-Python	Linguagem principal
-Streamlit	Interface Web
-scikit-learn	Cálculo da similaridade cosseno
-Plotly	Visualizações interativas
-pandas / numpy	Manipulação e geração de dados
+- Cada dimensão representa um cliente.
+- Os valores indicam a quantidade de vezes que o cliente comprou o produto.
 
-🔍 Como Funciona
-Geração de dados fictícios: o sistema cria automaticamente uma base com clientes, produtos, categorias e transações.
+**Exemplo:**
 
-Matriz item-item: é construída com base na quantidade de compras por cliente.
+Produto A → `[3, 0, 2, 1]`  
+Produto B → `[0, 1, 0, 1]`
 
-Cálculo de similaridade: utiliza a função cosine_similarity da scikit-learn para encontrar produtos semelhantes.
+---
 
-Recomendações: ao selecionar um produto, o sistema retorna os mais similares com métricas e gráficos.
+### 🔸 Similaridade do Cosseno
 
-📸 Capturas de Tela
-Recomendação Personalizada	Análise de Vendas	Produtos Populares
+A **similaridade cosseno** entre dois vetores A e B é definida como:
 
-💻 Executando Localmente
-Clone o repositório:
+\[
+\text{similaridade}(A, B) = \cos(\theta) = \frac{\vec{A} \cdot \vec{B}}{\|\vec{A}\| \cdot \|\vec{B}\|}
+\]
 
-bash
-Copiar
-Editar
-git clone https://github.com/seu-usuario/sistema-recomendacao.git
-cd sistema-recomendacao
-Instale as dependências:
+Onde:
 
-bash
-Copiar
-Editar
+- \( \vec{A} \cdot \vec{B} \): produto escalar entre A e B.
+- \( \|\vec{A}\| \): norma (magnitude) de A.
+- \( \|\vec{B}\| \): norma (magnitude) de B.
+
+O resultado varia entre:
+
+- `1` → vetores idênticos (máxima similaridade)
+- `0` → vetores ortogonais (sem similaridade)
+- `-1` → vetores opostos (não aplicável neste contexto, pois não há pesos negativos)
+
+---
+
+## ⚙️ Como Funciona?
+
+1. **Carregamento de dados** de compra.
+2. Construção de uma **matriz esparsa Produto x Cliente**.
+3. Cálculo da **similaridade cosseno** entre todos os produtos.
+4. Exibição dos **produtos mais similares** ao item selecionado.
+
+---
+
+## 🛠 Tecnologias Utilizadas
+
+- Python
+- Pandas
+- Scikit-learn (`cosine_similarity`)
+- Streamlit
+- Jupyter Notebook (para análise e testes)
+
+---
+
+## 🚀 Executando o Projeto
+
+Clone o repositório e execute localmente:
+
+```bash
+git clone https://github.com/seu-usuario/recomendacao-cosseno.git
+cd recomendacao-cosseno
 pip install -r requirements.txt
-Execute a aplicação:
-
-bash
-Copiar
-Editar
 streamlit run app.py
-🌐 Deploy
-Este projeto está hospedado gratuitamente no Streamlit Cloud. Para hospedar o seu:
+```
 
-Crie um repositório no GitHub com seu código.
+---
 
-Acesse https://streamlit.io/cloud e conecte ao seu GitHub.
+## 📂 Estrutura do Projeto
 
-Escolha o repositório e a branch principal.
+```
+├── app.py                  # Interface com Streamlit
+├── dados/                  # Dados fictícios ou reais
+├── utils.py                # Funções auxiliares
+├── notebooks/              # Análises e prototipação
+├── requirements.txt        # Dependências do projeto
+└── README.md               # Este documento
+```
 
-Configure o arquivo inicial (app.py) e publique.
+---
 
-📁 Estrutura do Projeto
-bash
-Copiar
-Editar
-├── app.py              # Código principal da aplicação Streamlit
-├── requirements.txt    # Dependências do projeto
-├── README.md           # Este arquivo
-📬 Contato
-Desenvolvido por Gustavo Barbosa
-📧 gustavobarbosa.dev [at] gmail.com
-🔗 LinkedIn | GitHub
+## 📊 Exemplo de Uso
 
+Suponha que o usuário selecione o produto **"Arroz Branco 1kg"**.  
+O sistema verifica quais produtos têm padrões de compra semelhantes — por exemplo:
+
+- **Feijão Carioca 1kg** (similaridade: 0.89)
+- **Óleo de Soja 900ml** (similaridade: 0.76)
+
+Esses produtos são então **recomendados ao cliente** com base nos comportamentos de outros consumidores.
+
+---
+
+## 🔧 Possíveis Extensões
+
+- Recomendação por **cliente individual**.
+- Inclusão de **filtros por categoria ou preço**.
+- **Clusterização de clientes** com K-means.
+- Avaliação com **métricas de precisão/recall**.
+
+---
+
+## 👨‍💻 Autor
+
+**Gustavo Barbosa**  
+📘 Engenharia da Computação | 📊 Analista de Dados | 🎯 Foco em Ciência de Dados
+
+<p align="center">
+  <a href="https://www.linkedin.com/in/gustavo-barbosa-868976236/">
+    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn">
+  </a>
+  <a href="mailto:gustavobarbosa7744@gmail.com">
+    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email">
+  </a>
+  <a href="https://github.com/seu-usuario">
+    <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
+  </a>
+</p>
