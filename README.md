@@ -1,143 +1,88 @@
-cat << 'EOF' > README.md
-# 🔗 Sistema de Recomendação com Similaridade Cosseno  
-### Recomendando produtos com base em vetores de comportamento de compra
+🛍️ Sistema de Recomendação de Produtos com Similaridade Cosseno
+Este projeto é uma aplicação web interativa para recomendação de produtos baseada em similaridade cosseno, utilizando técnicas de filtragem colaborativa. Desenvolvido com Python, Streamlit e scikit-learn, o sistema simula um cenário realista de compras e permite ao usuário explorar recomendações personalizadas de forma visual e intuitiva.
 
-<p align="center">
-  <img src="https://miro.medium.com/v2/resize:fit:1400/1*G5eDcA1vMpGg2s0gN4tX4g.gif" width="600" alt="Recommender GIF"/>
-</p>
+🔗 Acesse a aplicação:
+https://recomendacao-d23k2ucfmjz3anxevvwnak.streamlit.app/
 
----
+🚀 Funcionalidades
+Interface moderna e responsiva com Streamlit e CSS customizado
 
-## 📌 Descrição do Projeto
+Geração de dados fictícios simulando compras reais
 
-Este projeto implementa um sistema de recomendação de produtos com base em **similaridade cosseno** entre vetores de comportamento de compra. Utilizando técnicas de **álgebra linear** e **ciência de dados**, é possível identificar produtos que apresentam padrões de compra semelhantes entre os clientes.
+Cálculo de similaridade cosseno entre produtos (matriz item-item)
 
----
+Recomendação de produtos similares com base em um item selecionado
 
-## 🧠 Fundamentação Matemática
+Visualização interativa com Plotly:
 
-### 1. Representação Vetorial de Produtos  
-Cada produto é modelado como um vetor no espaço n-dimensional, onde cada dimensão representa um cliente:
+Gráficos de vendas
 
-\[
-Produto_i = [qtd_{cliente1},\ qtd_{cliente2},\ ..., qtd_{clienteN}]
-\]
+Produtos mais populares
 
----
+Evolução de compras por mês
 
-### 2. Matriz de Utilidade  
+Heatmap da matriz de similaridade
 
-Matriz onde as linhas representam produtos e as colunas, clientes. Os valores indicam a quantidade comprada:
+🧠 Tecnologias Utilizadas
+Ferramenta	Finalidade
+Python	Linguagem principal
+Streamlit	Interface Web
+scikit-learn	Cálculo da similaridade cosseno
+Plotly	Visualizações interativas
+pandas / numpy	Manipulação e geração de dados
 
-\`\`\`
-           Cliente1  Cliente2  ...  ClienteN
-Produto1     2         0      ...     1
-Produto2     0         3      ...     0
-Produto3     1         1      ...     4
-\`\`\`
+🔍 Como Funciona
+Geração de dados fictícios: o sistema cria automaticamente uma base com clientes, produtos, categorias e transações.
 
----
+Matriz item-item: é construída com base na quantidade de compras por cliente.
 
-### 3. Similaridade Cosseno  
+Cálculo de similaridade: utiliza a função cosine_similarity da scikit-learn para encontrar produtos semelhantes.
 
-Mede o ângulo entre dois vetores (independente da magnitude):
+Recomendações: ao selecionar um produto, o sistema retorna os mais similares com métricas e gráficos.
 
-\[
-\cos(\theta) = \frac{A \cdot B}{\|A\| \times \|B\|}
-\]
+📸 Capturas de Tela
+Recomendação Personalizada	Análise de Vendas	Produtos Populares
 
-- \( A \cdot B \): Produto escalar  
-- \( \|A\| \): Norma Euclidiana do vetor A  
-- \( \|B\| \): Norma Euclidiana do vetor B
+💻 Executando Localmente
+Clone o repositório:
 
----
+bash
+Copiar
+Editar
+git clone https://github.com/seu-usuario/sistema-recomendacao.git
+cd sistema-recomendacao
+Instale as dependências:
 
-## ⚙️ Como Funciona
-
-1. Carrega a base de dados com históricos de vendas.
-2. Constrói a matriz de utilidade produto-cliente.
-3. Aplica a função \`cosine_similarity\` da biblioteca \`scikit-learn\`.
-4. Retorna os produtos mais similares ao escolhido.
-
----
-
-## 🚀 Deploy Local
-
-### Pré-requisitos
-
-- Python 3.10+
-- Jupyter Notebook
-- Bibliotecas: \`pandas\`, \`scikit-learn\`, \`numpy\`
-
-### Instalação
-
-\`\`\`bash
-git clone https://github.com/Gusta765/Recomenda-es-de-Produtos-por-Afinidade.git
-cd Recomenda-es-de-Produtos-por-Afinidade
+bash
+Copiar
+Editar
 pip install -r requirements.txt
-\`\`\`
+Execute a aplicação:
 
-### Executando o projeto
+bash
+Copiar
+Editar
+streamlit run app.py
+🌐 Deploy
+Este projeto está hospedado gratuitamente no Streamlit Cloud. Para hospedar o seu:
 
-1. Abra o notebook \`Sistema_Recomendação.ipynb\` com o Jupyter
-2. Execute as células do notebook
-3. Insira o ID de um produto quando solicitado
-4. Veja a lista de recomendações personalizadas
+Crie um repositório no GitHub com seu código.
 
----
+Acesse https://streamlit.io/cloud e conecte ao seu GitHub.
 
-## 💡 Exemplo de Recomendação
+Escolha o repositório e a branch principal.
 
-\`\`\`bash
-Digite o ID do produto comprado: 10
-\`\`\`
+Configure o arquivo inicial (app.py) e publique.
 
-**Saída:**
-\`\`\`
-Produtos recomendados para quem comprou o produto 10:
-Produto  Similaridade
-  11         72%
-  13         64%
-  50         62%
-\`\`\`
+📁 Estrutura do Projeto
+bash
+Copiar
+Editar
+├── app.py              # Código principal da aplicação Streamlit
+├── requirements.txt    # Dependências do projeto
+├── README.md           # Este arquivo
+📬 Contato
+Desenvolvido por Gustavo Barbosa
+📧 gustavobarbosa.dev [at] gmail.com
+🔗 LinkedIn | GitHub
 
----
-
-## 📈 Interpretação dos Resultados
-
-- Produtos com maior percentual têm comportamento de compra mais parecido.
-- As recomendações podem indicar **substitutos**, **complementares** ou **tendências** de compra.
-- A similaridade vetorial traz uma abordagem mais robusta do que simples contagens ou regras de associação.
-
----
-
-## 📂 Tecnologias Utilizadas
-
-- **Python** – Linguagem principal  
-- **Pandas** – Análise e manipulação de dados  
-- **Scikit-learn** – Similaridade cosseno  
-- **Jupyter Notebook** – Ambiente interativo
-
----
-
-## 🧪 Teste você mesmo
-
-👉  [Download do arquivo de vendas](https://github.com/Gusta765/Recomenda-es-de-Produtos-por-Afinidade/raw/main/data/Vendas_simi.xlsx)  
-👉  [Acesse o notebook do projeto](https://github.com/Gusta765/Recomenda-es-de-Produtos-por-Afinidade/blob/main/Sistema_Recomenda%C3%A7%C3%A3o.ipynb)
-
----
-
-## 📫 Contato
-
-<p align="center">
-  <a href="https://www.linkedin.com/in/gustavo-barbosa-868976236/">
-    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn">
-  </a>
-  <a href="mailto:gustavobarbosa7744@gmail.com">
-    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email">
-  </a>
-  <a href="https://github.com/Gusta765">
-    <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
-  </a>
-</p>
-EOF
